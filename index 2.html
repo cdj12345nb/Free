@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เว็บเติมเกม</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f2f2f2; margin: 0; padding: 0; }
+        .container { max-width: 500px; margin: 50px auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+        h1 { text-align: center; color: #333; }
+        label { display: block; margin: 10px 0 5px; }
+        input, select, button { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc; }
+        button { background: #4CAF50; color: #fff; border: none; cursor: pointer; }
+        button:hover { background: #45a049; }
+        .message { text-align: center; color: blue; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>เว็บเติมเกม</h1>
+        <form id="topupForm">
+            <label for="game">เลือกเกม:</label>
+            <select id="game" required>
+                <option value="">-- เลือกเกม --</option>
+                <option value="Free Fire">Free Fire</option>
+                <option value="ROV">ROV</option>
+            </select>
+
+            <label for="uid">UID ของคุณ:</label>
+            <input type="text" id="uid" placeholder="ใส่ UID" required>
+
+            <label for="phone">เบอร์โทร:</label>
+            <input type="tel" id="phone" placeholder="ใส่เบอร์โทร" required>
+
+            <label for="diamond">จำนวนเพชร:</label>
+            <select id="diamond" required>
+                <option value="">-- เลือกจำนวนเพชร --</option>
+                <option value="33">33 เพชร</option>
+                <option value="66">66 เพชร</option>
+                <option value="99">99 เพชร</option>
+                <option value="300">300 เพชร</option>
+                <option value="500">500 เพชร</option>
+                <option value="1000">1000 เพชร</option>
+                <option value="3000">3000 เพชร</option>
+            </select>
+
+            <button type="submit">ส่งคำขอเติม</button>
+        </form>
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        const form = document.getElementById('topupForm');
+        const message = document.getElementById('message');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const game = document.getElementById('game').value;
+            const uid = document.getElementById('uid').value;
+            const phone = document.getElementById('phone').value;
+            const diamond = document.getElementById('diamond').value;
+
+            if(game && uid && phone && diamond){
+                message.textContent = `คำขอเติม ${diamond} เพชรเกม ${game} ของ UID ${uid} ส่งเรียบร้อย!`;
+                form.reset();
+            } else {
+                message.textContent = "กรุณากรอกข้อมูลให้ครบทุกช่อง";
+            }
+        });
+    </script>
+</body>
+</html>
