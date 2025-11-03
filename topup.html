@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>FreeFire เติมไว - เติมเพชร</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">FreeFire เติมไว</div>
+  <a class="back" href="index.html">◀ กลับ</a>
+</header>
+
+<main class="container">
+  <h2>ฟอร์มเติมเพชร</h2>
+
+  <form id="topupForm" class="form">
+    <label>เลือกเกม</label>
+    <select id="game" required>
+      <option value="Free Fire">Free Fire</option>
+      <option value="ROV">ROV</option>
+    </select>
+
+    <label>UID ของคุณ</label>
+    <input id="uid" type="text" placeholder="ใส่ UID (ตัวเลข)" required>
+
+    <label>เบอร์โทร (สำหรับแจ้งเตือน)</label>
+    <input id="phone" type="tel" placeholder="0812345678" required>
+
+    <label>จำนวนเพชร</label>
+    <select id="diamond" required>
+      <option value="">-- เลือกจำนวนเพชร --</option>
+      <option value="33">33 เพชร</option>
+      <option value="66">66 เพชร</option>
+      <option value="99">99 เพชร</option>
+      <option value="300">300 เพชร</option>
+      <option value="500">500 เพชร</option>
+      <option value="1000">1000 เพชร</option>
+      <option value="3000">3000 เพชร</option>
+    </select>
+
+    <button type="submit" class="btn">ส่งคำขอเติม</button>
+  </form>
+
+  <p class="message" id="message"></p>
+</main>
+
+<footer class="site-footer">
+  <small>© FreeFire เติมไว</small>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
