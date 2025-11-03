@@ -1,54 +1,59 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>FreeFire เติมไว - เติมเพชร</title>
-<link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เติมเกม - Free Fire เติมไว 💎</title>
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #21002a, #5e00b3);
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  background: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: auto;
+}
+input, select {
+  width: 90%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+button {
+  background: #b57cff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+button:hover {
+  background: #d0a6ff;
+}
+</style>
 </head>
 <body>
-<header class="site-header">
-  <div class="brand">FreeFire เติมไว</div>
-  <a class="back" href="index.html">◀ กลับ</a>
-</header>
-
-<main class="container">
-  <h2>ฟอร์มเติมเพชร</h2>
-
-  <form id="topupForm" class="form">
-    <label>เลือกเกม</label>
-    <select id="game" required>
-      <option value="Free Fire">Free Fire</option>
-      <option value="ROV">ROV</option>
-    </select>
-
-    <label>UID ของคุณ</label>
-    <input id="uid" type="text" placeholder="ใส่ UID (ตัวเลข)" required>
-
-    <label>เบอร์โทร (สำหรับแจ้งเตือน)</label>
-    <input id="phone" type="tel" placeholder="0812345678" required>
-
-    <label>จำนวนเพชร</label>
-    <select id="diamond" required>
-      <option value="">-- เลือกจำนวนเพชร --</option>
-      <option value="33">33 เพชร</option>
-      <option value="66">66 เพชร</option>
-      <option value="99">99 เพชร</option>
-      <option value="300">300 เพชร</option>
-      <option value="500">500 เพชร</option>
-      <option value="1000">1000 เพชร</option>
-      <option value="3000">3000 เพชร</option>
-    </select>
-
-    <button type="submit" class="btn">ส่งคำขอเติม</button>
-  </form>
-
-  <p class="message" id="message"></p>
-</main>
-
-<footer class="site-footer">
-  <small>© FreeFire เติมไว</small>
-</footer>
-<script src="js/main.js"></script>
+<h1>เติมเกม 💎</h1>
+<div class="container">
+  <input type="text" placeholder="กรอก UID ของคุณ">
+  <input type="text" placeholder="เบอร์โทรศัพท์">
+  <select>
+    <option>เลือกแพ็กเกจเพชร</option>
+    <option>33 💎</option>
+    <option>100 💎</option>
+    <option>500 💎</option>
+    <option>1000 💎</option>
+    <option>3000 💎</option>
+  </select>
+  <button onclick="alert('ส่งคำขอเรียบร้อยแล้ว! รอ ApFF ยืนยันการเติมนะครับ 💜')">ยืนยันการเติม</button>
+</div>
 </body>
 </html>
