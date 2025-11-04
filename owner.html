@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>เจ้าของร้าน - Free Fire เติมไว 💎</title>
-<style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #2a0066, #110022);
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
-</style>
-</head>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Owner</title><link rel="stylesheet" href="/css/style.css"></head>
 <body>
-<h1>เจ้าของร้าน ApFF 💎</h1>
-<p>ยินดีต้อนรับเข้าสู่ระบบหลังบ้านเจ้าของร้าน!</p>
-<p>ดูประวัติแอดมิน, เพิ่มเครดิต, และจัดการลูกค้าได้ที่นี่ (จำลอง)</p>
+  <h1>Owner Panel</h1>
+  <p>สรุปยอดและสถานะคำขอ</p>
+  <div id="summary"></div>
+  <script>
+    async function load(){
+      const r = await fetch('/api/topups?limit=500');
+      const rows = await r.json();
+      const total = rows.length;
+      const pending = rows.filter(r=>r.status==='pending').length;
+      const completed = rows.filter(r=>r.status==='completed').length;
+      document.getElementById('summary').innerHTML = `<p>รวมคำขอ: ${total}</p><p>รอดำเนินการ: ${pending}</p><p>สำเร็จ: ${completed}</p>`;
+    }
+    load();
+  </script>
 </body>
 </html>
