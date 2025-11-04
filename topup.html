@@ -1,59 +1,27 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>เติมเกม - Free Fire เติมไว 💎</title>
-<style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #21002a, #5e00b3);
-  color: white;
-  text-align: center;
-  margin: 0;
-  padding: 20px;
-}
-.container {
-  background: rgba(0,0,0,0.5);
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 400px;
-  margin: auto;
-}
-input, select {
-  width: 90%;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  margin: 10px 0;
-}
-button {
-  background: #b57cff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-button:hover {
-  background: #d0a6ff;
-}
-</style>
+<!doctype html>
+<html lang='th'>
+<head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Free Fire เติมไว - เติมเพชร</title>
+<link rel='stylesheet' href='css/style.css'>
 </head>
 <body>
-<h1>เติมเกม 💎</h1>
-<div class="container">
-  <input type="text" placeholder="กรอก UID ของคุณ">
-  <input type="text" placeholder="เบอร์โทรศัพท์">
-  <select>
-    <option>เลือกแพ็กเกจเพชร</option>
-    <option>33 💎</option>
-    <option>100 💎</option>
-    <option>500 💎</option>
-    <option>1000 💎</option>
-    <option>3000 💎</option>
-  </select>
-  <button onclick="alert('ส่งคำขอเรียบร้อยแล้ว! รอ ApFF ยืนยันการเติมนะครับ 💜')">ยืนยันการเติม</button>
-</div>
+<header class='site-header'><div class='brand'>Free Fire เติมไว</div><a class='back' href='index.html'>◀ กลับ</a></header>
+<main class='container'>
+  <h2>ส่งคำขอเติมเพชร</h2>
+  <form id='topupForm' class='form'>
+    <label>เกม</label>
+    <select id='game'><option>Free Fire</option><option>ROV</option></select>
+    <label>UID</label><input id='uid' placeholder='ใส่ UID' required>
+    <label>เบอร์โทร</label><input id='phone' placeholder='0812345678' required>
+    <label>แพ็กเกจ</label>
+    <select id='diamond'><option value='33'>33</option><option value='100'>100</option><option value='300'>300</option><option value='500'>500</option><option value='1000'>1000</option></select>
+    <label>หมายเหตุ (ไม่บังคับ)</label><input id='note' placeholder='เช่น เติมตอนเย็น'>
+    <button type='submit' class='btn'>ส่งคำขอ</button>
+  </form>
+  <p class='message' id='message'></p>
+  <div class='tip'><strong>หมายเหตุ:</strong> เป็นระบบจำลอง ข้อมูลจะเก็บในเบราว์เซอร์เท่านั้น</div>
+</main>
+<footer class='site-footer'><small>© Free Fire เติมไว (Demo)</small></footer>
+<script src='js/main.js'></script>
 </body>
 </html>
