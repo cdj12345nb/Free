@@ -1,0 +1,98 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PUBG Mobile — BlueStrike.top</title>
+<link rel="icon" href="assets/logo32.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070708;
+  --card:#0e1114;
+  --accent:#0ea5e9;
+  --muted:#9aa6b2;
+  --white:#ffffff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--white)}
+.header{display:flex;align-items:center;gap:12px;padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.04)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo .mark{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#184e9a);display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:700}
+.container{max-width:980px;margin:28px auto;padding:0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+.game-icon{height:86px;width:86px;border-radius:10px;background:#111;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:10px}
+.h1{font-size:20px;margin:0 0 6px}
+.small{color:var(--muted);font-size:13px}
+.btn{background:var(--accent);border:none;padding:10px 12px;border-radius:8px;color:#00213a;font-weight:700;cursor:pointer}
+.package{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;margin-bottom:10px;background:linear-gradient(90deg, rgba(14,165,233,0.06), transparent)}
+.input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
+.footer{padding:18px;text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+.tag{display:inline-block;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);font-size:12px}
+.badge{background:rgba(255,255,255,0.06);padding:6px 8px;border-radius:6px;font-weight:700}
+.orders-table{width:100%;border-collapse:collapse;margin-top:12px}
+.orders-table th, .orders-table td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left;font-size:13px}
+.toast{position:fixed;right:14px;bottom:14px;background:#09202a;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo"><div class="mark">BS</div>
+    <div><div style="font-weight:800">BlueStrike.top</div><div class="small">เติมเกม — PUBG Mobile</div></div>
+  </div>
+</header>
+
+<main class="container">
+  <a href="index.html" style="color:var(--accent);text-decoration:none">← กลับ</a>
+  <h1 style="margin-top:12px">PUBG Mobile</h1>
+  <div class="small">เติม UC / คูปอง PUBG Mobile - เลือกแพ็กและแจ้งสลิป PromptPay</div>
+
+  <div style="margin-top:14px">
+    <div class="package">\n  <div>\n    <div style="font-weight:700">60 UC</div>\n    <div class="small">ราคา 30,000 LAK</div>\n  </div>\n  <div><button class="btn" onclick="selectPackage('60 UC', 60)">เลือก</button></div>\n</div>\n<div class="package">\n  <div>\n    <div style="font-weight:700">300 UC</div>\n    <div class="small">ราคา 140,000 LAK</div>\n  </div>\n  <div><button class="btn" onclick="selectPackage('300 UC', 300)">เลือก</button></div>\n</div>\n<div class="package">\n  <div>\n    <div style="font-weight:700">600 UC</div>\n    <div class="small">ราคา 270,000 LAK</div>\n  </div>\n  <div><button class="btn" onclick="selectPackage('600 UC', 600)">เลือก</button></div>\n</div>\n
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div style="font-weight:700;margin-bottom:8px">ข้อมูลบัญชี / การชำระ</div>
+    <label class="small">เบอร์โทรผู้ทำรายการ (แจ้งการชำระ)</label>
+    <input id="phone" class="input" placeholder="เบอร์ (เช่น 0991234567)">
+    <label class="small" style="margin-top:8px">UID เกม</label>
+    <input id="uid" class="input" placeholder="ใส่ UID เกมของคุณ">
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <button class="btn" onclick="goCheckout()">ไปชำระ (PromptPay)</button>
+      <button class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)" onclick="clearForm()">ล้าง</button>
+    </div>
+    <div class="small" style="margin-top:8px">ระบบ: แอดมินจะกดยืนยันก่อนเติม (สำหรับเดโมนี้ คำสั่งซื้อจะบันทึกในเบราว์เซอร์)</div>
+  </div>
+</main>
+
+<script>
+let selected = null;
+function selectPackage(label, value){
+  selected = {label: label, value: value};
+  alert('เลือก ' + label);
+}
+function clearForm(){ document.getElementById('phone').value=''; document.getElementById('uid').value=''; selected=null; }
+function goCheckout(){
+  const phone = document.getElementById('phone').value.trim();
+  const uid = document.getElementById('uid').value.trim();
+  if(!selected){ alert('กรุณาเลือกแพ็ก'); return; }
+  if(!phone || !uid){ alert('กรอกเบอร์ และ UID ให้ครบ'); return; }
+  const order = {
+    id: 'ORD' + Date.now(),
+    game: 'PUBG Mobile',
+    package: selected.label,
+    amount: selected.value,
+    phone: phone, uid: uid,
+    status: 'pending',
+    created: new Date().toISOString()
+  };
+  const orders = JSON.parse(localStorage.getItem('bs_orders') || '[]');
+  orders.push(order);
+  localStorage.setItem('bs_orders', JSON.stringify(orders));
+  localStorage.setItem('bs_last_order', JSON.stringify(order));
+  window.location.href = 'checkout.html';
+}
+</script>
+</body>
+</html>

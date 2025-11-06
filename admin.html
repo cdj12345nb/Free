@@ -1,0 +1,82 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — BlueStrike.top</title>
+<link rel="icon" href="assets/logo32.png"><style>
+:root{
+  --bg:#070708;
+  --card:#0e1114;
+  --accent:#0ea5e9;
+  --muted:#9aa6b2;
+  --white:#ffffff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--white)}
+.header{display:flex;align-items:center;gap:12px;padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.04)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo .mark{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#184e9a);display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:700}
+.container{max-width:980px;margin:28px auto;padding:0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+.game-icon{height:86px;width:86px;border-radius:10px;background:#111;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:10px}
+.h1{font-size:20px;margin:0 0 6px}
+.small{color:var(--muted);font-size:13px}
+.btn{background:var(--accent);border:none;padding:10px 12px;border-radius:8px;color:#00213a;font-weight:700;cursor:pointer}
+.package{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;margin-bottom:10px;background:linear-gradient(90deg, rgba(14,165,233,0.06), transparent)}
+.input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
+.footer{padding:18px;text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+.tag{display:inline-block;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);font-size:12px}
+.badge{background:rgba(255,255,255,0.06);padding:6px 8px;border-radius:6px;font-weight:700}
+.orders-table{width:100%;border-collapse:collapse;margin-top:12px}
+.orders-table th, .orders-table td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left;font-size:13px}
+.toast{position:fixed;right:14px;bottom:14px;background:#09202a;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
+</style></head><body>
+<header class="header"><div class="logo"><div class="mark">BS</div><div><div style="font-weight:800">BlueStrike.top</div><div class="small">หน้าแอดมิน (Demo)</div></div></div></header>
+<main class="container">
+  <h2>คำสั่งซื้อ (เก็บในเบราว์เซอร์)</h2>
+  <div id="orders"></div>
+  <div style="margin-top:12px"><button class="btn" onclick="exportCSV()">ดาวน์โหลด CSV ของคำสั่งซื้อ</button></div>
+  <div class="footer">ระบบ: แอดมินกด "ยืนยันเติม" เมื่อเติมให้ลูกค้าเสร็จ</div>
+</main>
+<script>
+function render(){
+  const wrap = document.getElementById('orders');
+  const orders = JSON.parse(localStorage.getItem('bs_orders') || '[]').slice().reverse();
+  if(orders.length === 0){ wrap.innerHTML = '<div class="small">ไม่มีคำสั่งซื้อ</div>'; return; }
+  let html = '';
+  orders.forEach(o => {
+    html += `<div class="card" style="margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><strong>${o.id}</strong> <span class="small">(${o.status})</span></div>
+        <div><button class="btn" onclick="accept('${o.id}')">ยืนยันเติม</button></div>
+      </div>
+      <div class="small">เกม: ${o.game} · แพ็ก: ${o.package} · ราคา: ${o.amount}</div>
+      <div class="small">UID: ${o.uid} · เบอร์: ${o.phone}</div>
+      <div style="margin-top:8px">${o.note ? '<div class="small">หมายเหตุ: ' + o.note + '</div>' : ''}</div>
+      <div style="margin-top:8px">${o.slip ? '<div><img src="'+o.slip+'" style="max-width:220px;border-radius:8px;border:1px solid rgba(255,255,255,0.04)"></div>' : ''}</div>
+    </div>`;
+  });
+  wrap.innerHTML = html;
+}
+function accept(id){
+  const orders = JSON.parse(localStorage.getItem('bs_orders') || '[]');
+  const idx = orders.findIndex(o => o.id === id);
+  if(idx === -1) return alert('ไม่พบคำสั่งซื้อ');
+  orders[idx].status = 'completed';
+  localStorage.setItem('bs_orders', JSON.stringify(orders));
+  alert('ยืนยันเติมเรียบร้อย (สถานะ: completed)');
+  render();
+}
+function exportCSV(){
+  const orders = JSON.parse(localStorage.getItem('bs_orders') || '[]');
+  if(orders.length===0){ alert('ไม่มีคำสั่งซื้อ'); return; }
+  let csv = 'id,game,package,amount,uid,phone,status,created,note\n';
+  orders.forEach(o => {
+    csv += [o.id,o.game,o.package,o.amount,o.uid,o.phone,o.status,o.created,(o.note||'')].map(s=>'"'+String(s).replace(/"/g,'""')+'"').join(',') + '\n';
+  });
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download='bs_orders.csv'; a.click();
+  URL.revokeObjectURL(url);
+}
+render();
+</script></body></html>
