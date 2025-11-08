@@ -1,9 +1,0 @@
-fetch("https://blue-topup-backend.vercel.app/api/topup", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    uid: uid,
-    packageName: selectedPackage,
-    adminUsername: "admin1"
-  })
-})
