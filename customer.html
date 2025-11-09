@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer - BlueStrike</title>
+<style>
+body { background-color: #fff; color: #900; font-family: Arial; text-align: center; padding: 20px;}
+select, input { padding: 10px; margin: 5px;}
+button { padding: 10px 20px; background-color: #900; color: #fff; border: none; cursor: pointer;}
+</style>
+</head>
+<body>
+<h1>เติมเกม Free Fire</h1>
+<label>UID:</label><input type="text" id="uid"><br>
+<label>เบอร์โทร:</label><input type="text" id="phone"><br>
+<label>เลือกเพชร:</label>
+<select id="diamond">
+<option value="33">33💎</option>
+<option value="100">100💎</option>
+<option value="500">500💎</option>
+<option value="1000">1.000💎</option>
+<option value="3000">3.000💎</option>
+</select><br>
+<button onclick="submitOrder()">ยืนยัน</button>
+
+<div id="result" style="margin-top:20px;"></div>
+
+<script>
+function submitOrder(){
+    let uid = document.getElementById('uid').value;
+    let phone = document.getElementById('phone').value;
+    let diamond = document.getElementById('diamond').value;
+    if(uid=='' || phone==''){ alert('กรอก UID และเบอร์โทรด้วย'); return; }
+    let qr = 'QR/เลขบัญชีจำลอง: 1234-5678-9012';
+    document.getElementById('result').innerHTML = 'คำสั่งซื้อสำเร็จ!<br>' + 
+    'UID: '+uid+'<br>เบอร์: '+phone+'<br>เพชร: '+diamond+'💎<br>'+qr+'<br>แอดมินจะเติมให้คุณเร็วๆนี้';
+}
+</script>
+</body>
+</html>

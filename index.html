@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - BlueStrike</title>
+<style>
+body { background-color: #fff; color: #900; font-family: Arial; text-align: center; padding: 50px;}
+input { padding: 10px; margin: 5px;}
+button { padding: 10px 20px; background-color: #900; color: #fff; border: none; cursor: pointer;}
+</style>
+</head>
+<body>
+<h1>BlueStrike Game Store</h1>
+<h3>Login</h3>
+<input type="password" id="password" placeholder="Enter password"><br>
+<button onclick="login()">Login</button>
+
+<script>
+function login() {
+    let pw = document.getElementById('password').value;
+    if(pw === 'admin123') { window.location='customer.html'; }
+    else { alert('รหัสผ่านไม่ถูกต้อง'); }
+}
+</script>
+</body>
+</html>
