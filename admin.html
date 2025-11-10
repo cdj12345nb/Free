@@ -4,26 +4,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin - BlueStrike</title>
+<title>Login - BlueStrike</title>
 <style>
-body { background-color: #fff; color: #900; font-family: Arial; text-align: center; padding: 20px;}
-table { margin:auto; border-collapse: collapse;}
-th, td { border: 1px solid #900; padding: 10px;}
-button { padding: 5px 10px; background-color: #900; color: #fff; border: none; cursor: pointer;}
+body { background-color: #fff; color: #900; font-family: Arial; text-align: center; padding: 50px;}
+input { padding: 10px; margin: 5px;}
+button { padding: 10px 20px; background-color: #900; color: #fff; border: none; cursor: pointer;}
 </style>
 </head>
 <body>
-<h1>Admin Panel</h1>
-<p>นี่เป็นตัวอย่างจำลอง</p>
-<table>
-<tr><th>UID</th><th>เบอร์</th><th>เพชร</th><th>สถานะ</th><th>เติม</th></tr>
-<tr><td>12345</td><td>0101010101</td><td>100💎</td><td id="status1">รอเติม</td><td><button onclick="confirm1()">เติมสำเร็จ</button></td></tr>
-<tr><td>67890</td><td>0202020202</td><td>500💎</td><td id="status2">รอเติม</td><td><button onclick="confirm2()">เติมสำเร็จ</button></td></tr>
-</table>
+<h1>BlueStrike Game Store</h1>
+<h3>Login</h3>
+<input type="password" id="password" placeholder="Enter password"><br>
+<button onclick="login()">Login</button>
 
 <script>
-function confirm1(){ document.getElementById('status1').innerText='เติมสำเร็จ ✅'; }
-function confirm2(){ document.getElementById('status2').innerText='เติมสำเร็จ ✅'; }
+function login() {
+    let pw = document.getElementById('password').value;
+    if(pw === 'admin123') { window.location='customer.html'; }
+    else { alert('รหัสผ่านไม่ถูกต้อง'); }
+}
 </script>
 </body>
 </html>
